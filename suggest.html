@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Suggestion - CBIT Library</title>
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+       body {
+           background-image: url("suggest.jpeg");
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-position: center;
+           font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 100vh;
+           margin: 0;
+       }
+       form {
+           background-color: rgba(255, 255, 255, 0.9);
+           padding: 20px;
+           border-radius: 10px;
+           width: 400px;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+       }
+       fieldset {
+           border: 3px solid rgb(104, 16, 16);
+           padding: 15px;
+       }
+       .sugg p {
+           font-size: 20px;
+           font-weight: bold;
+           text-align: center;
+           color: rgba(126, 37, 37, 0.932);
+       }
+       label {
+           font-weight: bold;
+           display: block;
+           margin-bottom: 5px;
+       }
+       input, textarea {
+           width: 100%;
+           padding: 8px;
+           margin-bottom: 10px;
+           border: 1px solid #ccc;
+           border-radius: 5px;
+       }
+       #but {
+           background-color: rgba(14, 218, 41, 0.932);
+           border: none;
+           height: 35px;
+           width: 100%;
+           font-size: 16px;
+           font-weight: bold;
+           color: white;
+           cursor: pointer;
+           transition: background-color 0.3s;
+           border-radius: 5px;
+       }
+       #but:hover {
+           background-color: #267626;
+       }
+       .done-message {
+           text-align: center;
+           color: #39b939;
+           font-weight: bold;
+           margin-top: 10px;
+       }
+   </style>
+</head>
+<body>
+  <form id="suggestionForm">
+   <fieldset>
+       <div class="sugg">
+           <p>Suggest a Book</p>
+           <label for="suggest_name">Name:</label>
+           <input type="text" id="suggest_name" placeholder="Enter your name" name="suggest_name" required>
+           
+           <label for="suggest_roll">Roll Number:</label>
+           <input type="number" id="suggest_roll" name="suggest_roll" required> 
+
+           <label for="book_name">Book Name:</label>
+           <input type="text" id="book_name" placeholder="Enter book name" name="book_name" required>
+
+           <label for="book_author">Book Author:</label>
+           <input type="text" id="book_author" placeholder="Enter author" name="book_author" required>
+
+           <label for="reason">Reason:</label>
+           <textarea rows="3" id="reason" placeholder="Enter your detailed reason" name="reason" required></textarea>
+
+           <input type="submit" value="Submit" id="but">
+           <div id="doneMessage" class="done-message" style="display: none;">Done!</div>
+       </div>
+   </fieldset>
+  </form>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+      document.getElementById('suggestionForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+          document.getElementById('doneMessage').style.display = 'block'; // Show "Done" message
+          setTimeout(function() {
+              document.getElementById('suggestionForm').reset(); // Reset form
+              document.getElementById('doneMessage').style.display = 'none'; // Hide "Done" message
+          }, 2000); // Reset after 2 seconds
+      });
+  </script>
+</body>
+</html>

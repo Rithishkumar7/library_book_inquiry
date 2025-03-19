@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Enquiry</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header-logo {
+            max-height: 120px;
+        }
+        .book-list {
+            margin-left: 20px;
+        }
+        .form-check {
+            margin-bottom: 8px;
+        }
+        .library-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .page-title {
+            color: #7e2525ee;
+            transition: color 0.3s;
+        }
+        .navbar {
+            background-color: #39b939 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-3">
+        <div class="text-center mb-4">
+            <img src="CBIT-LOGO-2023.png" class="header-logo" alt="CBIT Logo">
+        </div>
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="suggest.html">Suggestion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <h2 class="page-title text-center mb-4" id="pageTitle" onmouseover="changeColor('red')" onmouseout="changeColor('#7e2525ee')">LIBRARY BOOK ENQUIRY</h2>
+        
+        <div class="text-center mb-4">
+            <img src="library.jpeg" alt="Library Image" class="library-img">
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <form id="libraryForm" class="needs-validation" novalidate>
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0">Enter your details to access book</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" required>
+                                    <div class="invalid-feedback">Please enter your name</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="roll" class="form-label">Roll number</label>
+                                    <input type="text" class="form-control" id="roll" name="roll" pattern="[0-9]{12}" required>
+                                    <div class="invalid-feedback">Please enter a valid roll number</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="lid" class="form-label">Library ID</label>
+                                    <input type="text" class="form-control" id="lid" name="lid" pattern="[0-9]+" required>
+                                    <div class="invalid-feedback">Please enter a valid library ID</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="mnumber" class="form-label">Mobile number</label>
+                                    <input type="text" class="form-control" id="mnumber" name="mnumber" pattern="[0-9]{10}" required>
+                                    <div class="invalid-feedback">Please enter a valid 10-digit mobile number</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="branch" class="form-label">Choose your branch</label>
+                                    <select class="form-select" id="branch" name="branch" required onchange="updateBookDisplay()">
+                                        <option value="">Select Branch</option>
+                                        <option value="cse">CSE</option>
+                                        <option value="csm">CSM</option>
+                                        <option value="eee">EEE</option>
+                                        <option value="ece">ECE</option>
+                                        <option value="aiml">AIML</option>
+                                        <option value="mech">MECH</option>
+                                        <option value="civil">CIVIL</option>
+                                        <option value="chemical">CHEMICAL</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select your branch</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">Please enter a valid email address</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h4>Select Book Category</h4>
+                                
+                                <div id="cseBooks" class="book-category mb-3">
+                                    <h5>CSE Books</h5>
+                                    <div class="book-list">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="os" id="os">
+                                            <label class="form-check-label" for="os">Operating Systems</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="cn" id="cn">
+                                            <label class="form-check-label" for="cn">Computer Networks</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="dbms" id="dbms">
+                                            <label class="form-check-label" for="dbms">Database Management</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="eceBooks" class="book-category mb-3">
+                                    <h5>ECE Books</h5>
+                                    <div class="book-list">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="signal_processing" id="signal_processing">
+                                            <label class="form-check-label" for="signal_processing">Signal Processing</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="bee" id="bee">
+                                            <label class="form-check-label" for="bee">BEE</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="electronics_management" id="electronics_management">
+                                            <label class="form-check-label" for="electronics_management">Electronics Management</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="aimlBooks" class="book-category mb-3">
+                                    <h5>AIML Books</h5>
+                                    <div class="book-list">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="statistics" id="statistics">
+                                            <label class="form-check-label" for="statistics">Statistics</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="deep_learning" id="deep_learning">
+                                            <label class="form-check-label" for="deep_learning">Deep Learning</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="regressions" id="regressions">
+                                            <label class="form-check-label" for="regressions">Regressions</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="civilBooks" class="book-category mb-3">
+                                    <h5>CIVIL Books</h5>
+                                    <div class="book-list">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="civil_signal_processing" id="civil_signal_processing">
+                                            <label class="form-check-label" for="civil_signal_processing">Signal Processing</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="civil_bee" id="civil_bee">
+                                            <label class="form-check-label" for="civil_bee">BEE</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="eeeBooks" class="book-category mb-3">
+                                    <h5>EEE Books</h5>
+                                    <div class="book-list">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="eee_signal_processing" id="eee_signal_processing">
+                                            <label class="form-check-label" for="eee_signal_processing">Signal Processing</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="eee_bee" id="eee_bee">
+                                            <label class="form-check-label" for="eee_bee">BEE</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="scienceBooks" class="book-category mb-3">
+                                    <h5>Science Books</h5>
+                                    <div class="book-list">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="physics" id="physics">
+                                            <label class="form-check-label" for="physics">Physics</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="chemistry" id="chemistry">
+                                            <label class="form-check-label" for="chemistry">Chemistry</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="book" value="engineering_mathematics" id="engineering_mathematics">
+                                            <label class="form-check-label" for="engineering_mathematics">Engineering Mathematics</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success" id="submitBtn">Check Book Availability</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="text-center mt-3 mb-5">
+                    <h5>Not found your desired book? <a href="suggest.html" class="btn btn-outline-primary btn-sm">Click here to suggest a book</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal for Book Availability -->
+    <div class="modal fade" id="bookModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Book Availability</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalMessage">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="reserveBtn" style="display:none;">Reserve Book</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Book availability database (simulated)
+        const availableBooks = {
+            "os": true,
+            "cn": false,
+            "dbms": true,
+            "signal_processing": true,
+            "bee": false,
+            "electronics_management": true,
+            "electronics_architecture": false,
+            "matlab": true,
+            "statistics": true,
+            "deep_learning": false,
+            "regressions": true,
+            "data_everywhere": false,
+            "matlab_ai": true,
+            "civil_signal_processing": false,
+            "civil_bee": true,
+            "civil_electronics_management": false,
+            "civil_electronics_architecture": true,
+            "civil_matlab": false,
+            "eee_signal_processing": true,
+            "eee_bee": false,
+            "eee_electronics_management": true,
+            "eee_electronics_architecture": false,
+            "eee_matlab": true,
+            "physics": true,
+            "chemistry": true,
+            "engineering_mathematics": false,
+            "engineering_physics": true,
+            "engineering_chemistry": false
+        };
+        
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide all book categories initially
+            hideAllBookCategories();
+            
+            // Get the form element
+            const form = document.getElementById('libraryForm');
+            
+            // Add submit event listener
+            form.addEventListener('submit', function(event) {
+                // Prevent default form submission
+                event.preventDefault();
+                
+                // Check if form is valid
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                } else {
+                    // Form is valid, check book availability
+                    checkBookAvailability();
+                }
+                
+                form.classList.add('was-validated');
+            });
+            
+            // Initial setup
+            updateBookDisplay();
+        });
+        
+        // Function to change title color on hover
+        function changeColor(color) {
+            document.getElementById('pageTitle').style.color = color;
+        }
+        
+        // Function to hide all book categories
+        function hideAllBookCategories() {
+            const categories = [
+                'cseBooks', 'eceBooks', 'aimlBooks', 'civilBooks', 'eeeBooks'
+            ];
+            
+            categories.forEach(category => {
+                document.getElementById(category).style.display = 'none';
+            });
+        }
+        
+        // Function to update book display based on branch selection
+        function updateBookDisplay() {
+            const branch = document.getElementById('branch').value;
+            
+            // Hide all book categories first
+            hideAllBookCategories();
+            
+            // Show science books for all branches
+            document.getElementById('scienceBooks').style.display = 'block';
+            
+            // Show specific branch books
+            if (branch === 'cse' || branch === 'csm') {
+                document.getElementById('cseBooks').style.display = 'block';
+            } else if (branch === 'ece') {
+                document.getElementById('eceBooks').style.display = 'block';
+            } else if (branch === 'aiml') {
+                document.getElementById('aimlBooks').style.display = 'block';
+            } else if (branch === 'civil') {
+                document.getElementById('civilBooks').style.display = 'block';
+            } else if (branch === 'eee') {
+                document.getElementById('eeeBooks').style.display = 'block';
+            }
+        }
+        
+        // Function to check book availability
+        function checkBookAvailability() {
+            // Get all selected books
+            const checkboxes = document.querySelectorAll('input[name="book"]:checked');
+            const selectedBooks = Array.from(checkboxes).map(cb => cb.value);
+            
+            // Get user details for logging/displaying
+            const name = document.getElementById('name').value;
+            const branch = document.getElementById('branch').value;
+            
+            if (selectedBooks.length === 0) {
+                showModal('No Books Selected', 'Please select at least one book to check availability.', false);
+                return;
+            }
+            
+            // Check availability of each book
+            let availabilityResults = [];
+            let anyAvailable = false;
+            
+            selectedBooks.forEach(book => {
+                const isAvailable = availableBooks[book];
+                const bookName = document.querySelector(`label[for="${book}"]`).textContent;
+                
+                if (isAvailable) {
+                    anyAvailable = true;
+                    availabilityResults.push(`<li class="text-success">${bookName} - Available</li>`);
+                } else {
+                    availabilityResults.push(`<li class="text-danger">${bookName} - Not Available</li>`);
+                }
+            });
+            
+            // Construct modal message
+            let message = `
+                <p>Hello ${name} from ${branch.toUpperCase()} department!</p>
+                <p>Here's the availability status for your selected books:</p>
+                <ul>${availabilityResults.join('')}</ul>
+            `;
+            
+            if (anyAvailable) {
+                message += `<p class="alert alert-success mt-3">You can reserve the available books by clicking the Reserve button below.</p>`;
+            } else {
+                message += `<p class="alert alert-warning mt-3">Unfortunately, none of your selected books are currently available.</p>`;
+            }
+            
+            // Show modal with results
+            showModal('Book Availability Results', message, anyAvailable);
+        }
+        
+        // Function to show modal with custom message
+        function showModal(title, message, showReserveButton) {
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const reserveBtn = document.getElementById('reserveBtn');
+            
+            modalTitle.textContent = title;
+            modalMessage.innerHTML = message;
+            
+            reserveBtn.style.display = showReserveButton ? 'block' : 'none';
+            
+            // Initialize and show the modal
+            const bookModal = new bootstrap.Modal(document.getElementById('bookModal'));
+            bookModal.show();
+            
+            // Add event listener for reserve button
+            if (showReserveButton) {
+                reserveBtn.onclick = function() {
+                    modalMessage.innerHTML = `
+                        <div class="alert alert-success">
+                            <h5>Reservation Successful!</h5>
+                            <p>Your books have been reserved. Please collect them within 2 days.</p>
+                            <p>Reference ID: REF-${Math.floor(Math.random() * 1000000)}</p>
+                        </div>
+                    `;
+                    reserveBtn.style.display = 'none';
+                };
+            }
+        }
+    </script>
+</body>
+</html>
